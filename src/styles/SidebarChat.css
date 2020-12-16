@@ -14,6 +14,11 @@
     margin-bottom: 8px;
 }
 
+.sidebarChat-info > p{
+    font-size: 14px;
+    color: grey;
+}
+
 .sidebarChat-info{
     margin-left: 15px;
 }
