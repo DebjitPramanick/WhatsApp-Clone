@@ -4,6 +4,7 @@ import {SearchOutlined} from '@material-ui/icons';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
+import SendIcon from '@material-ui/icons/Send';
 
 import React from 'react'
 import "../styles/Chat.css";
@@ -68,7 +69,7 @@ const Chat = () => {
                     type="text"/>
                     <button
                     type="submit">
-                        Send a message
+                        <SendIcon/>
                     </button>
                 </form>
 
