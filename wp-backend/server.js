@@ -35,25 +35,24 @@ const db = mongoose.connection
 db.once('open',()=>{
     console.log("DB connected.")
 
-    const messageCollection = db.collection("messages")
-    const changeStream = messageCollection.watch()
+    const messageCollection = db.collection("messages");
+    const changeStream = messageCollection.watch();
 
 
-    changeStream.on('change',()=>{
-        console.log("changed")
+    changeStream.on('change',(change)=>{
+        console.log("Changed Message");
 
         if(change.operationType === 'insert'){
             const messageDetails = change.fullDocument;
 
             pusher.trigger('messages','inserted',
             {
-                name: messageDetails.name,
-                message: messageDetails.message,
-                timeStamp: messageDetails.timeStamp,
-            })
+                name: messageDetails.user,
+                message: messageDetails.message
+            });
         }
         else{
-            console.log("Error triggering Pusher")
+            console.log("Error triggering Pusher");
         }
     })
 })
