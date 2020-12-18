@@ -11,4 +11,4 @@ const wpSchema = mongoose.Schema({
 })
 
 
-export default mongoose.model('Messages',wpSchema)
+export default mongoose.model('messages',wpSchema)
