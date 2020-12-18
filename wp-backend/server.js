@@ -21,6 +21,15 @@ const pusher = new Pusher({
 app.use(express.json())
 
 
+//To secure messages
+
+app.use((req,res,next)=>{
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.setHeader("Access-Control-Allow-Headers","*");
+    next();
+})
+
+
 //Config. DB
 
 mongoose.connect(connection_url,{
@@ -47,7 +56,7 @@ db.once('open',()=>{
 
             pusher.trigger('messages','inserted',
             {
-                name: messageDetails.user,
+                name: messageDetails.name,
                 message: messageDetails.message
             });
         }
