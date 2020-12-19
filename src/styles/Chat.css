@@ -77,8 +77,8 @@
      flex: 1;
      border-radius: 30px;
      padding: 10px;
-     border: none;
-     outline-color: rgb(214, 214, 214);
+     border: 0;
+     outline: 0;
  }
 
  .chat-footer > .MuiSvgIcon-root{
