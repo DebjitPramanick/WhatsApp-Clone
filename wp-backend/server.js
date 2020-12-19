@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import Messages from './DBmessages.js'
 import Pusher from 'pusher'
+import cors from 'cors'
 
 const app = express()
 const port = process.env.PORT || 9000
@@ -18,16 +19,8 @@ const pusher = new Pusher({
 
 //Middleware
 
-app.use(express.json())
-
-
-//To secure messages
-
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","*");
-    res.setHeader("Access-Control-Allow-Headers","*");
-    next();
-})
+app.use(express.json());
+app.use(cors());
 
 
 //Config. DB
@@ -54,10 +47,11 @@ db.once('open',()=>{
         if(change.operationType === 'insert'){
             const messageDetails = change.fullDocument;
 
-            pusher.trigger('messages','inserted',
+            pusher.trigger('messages','inserted', // messages is my channel name
             {
                 name: messageDetails.name,
-                message: messageDetails.message
+                message: messageDetails.message,
+                timeStamp: messageDetails.timeStamp
             });
         }
         else{
