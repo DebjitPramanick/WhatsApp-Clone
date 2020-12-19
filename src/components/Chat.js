@@ -9,7 +9,7 @@ import SendIcon from '@material-ui/icons/Send';
 import React from 'react'
 import "../styles/Chat.css";
 
-const Chat = () => {
+const Chat = ({ messages }) => {
     return (
         <div className="chat">
             <div className="chat-header">
@@ -34,13 +34,19 @@ const Chat = () => {
             </div>
 
             <div className="chat-body">
-                <p className="chat-message">
-                    <span className="chat-name">Debjit</span>
-                    This is message.
-                    <span className="chat-timestamp">
-                        {new Date().toUTCString()}
-                    </span>
-                </p>
+                {messages.map((message)=>{
+                    return(
+                        <p className="chat-message">
+                            <span className="chat-name">{message.name}</span>
+                            {message.message}
+                            <span className="chat-timestamp">
+                                {message.timeStamp}
+                            </span>
+                        </p>
+                    )
+
+                })}
+                
 
                 <p className="chat-message chat-reciever">
                     <span className="chat-name">Debjit</span>
