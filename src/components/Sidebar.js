@@ -38,7 +38,7 @@ const Sidebar = ({ rooms }) => {
             <div className="sidebar-chats">
                 <SidebarChat addNewchat/>
                 {rooms.map((room)=>{
-                    <SidebarChat key={room.id} name={room.name} id={room.name}/>
+                    return <SidebarChat key={room.id} name={room.name} id={room._id}/>
                 })}
             </div>
         </div>

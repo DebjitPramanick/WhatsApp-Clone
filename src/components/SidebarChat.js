@@ -18,7 +18,7 @@ const SidebarChat = ({addNewchat,id,name}) => {
 
     return !addNewchat ? (
         <div className="sidebarChat">
-            <Avatar/>
+            <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbFngkPm5xR5UarZY4-au4OqdsLDNzEwMTzg&usqp=CAU"/>
             <div className="sidebarChat-info">
                 <h2>{name}</h2>
                 <p>This is the last message</p>
@@ -26,7 +26,7 @@ const SidebarChat = ({addNewchat,id,name}) => {
         </div>
     ) : (
         <div onClick={createChat} className="sidebarChat add-btn">
-            <p>Add new chat</p>
+            <p>Add new room</p>
         </div>
     );
 }
