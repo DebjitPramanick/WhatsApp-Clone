@@ -1,4 +1,6 @@
 import React, {useEffect,useState} from 'react';
+import {BrowserRouter as Router, Switch,
+Route} from 'react-router-dom'
 import Chat from './components/Chat';
 import Sidebar from "./components/Sidebar";
 import Pusher from 'pusher-js'
@@ -61,14 +63,23 @@ const App = () => {
 
     }, [rooms]);
 
-    console.log(rooms);
-
 
     return (
         <div className="app">
             <div className="app-body">
-                <Sidebar rooms={rooms}/>
-                <Chat messages={messages}/>
+
+                <Router>
+                    <Sidebar rooms={rooms}/>
+                    <Switch>
+                        <Route path="/rooms/:roomId">
+                            <Chat messages={messages}/>
+                        </Route>
+                        <Route path="/">
+                            <h1>Welome</h1>
+                        </Route>
+                    </Switch>
+                </Router>
+                
             </div>
             
         </div>

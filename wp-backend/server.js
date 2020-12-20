@@ -107,6 +107,23 @@ app.get('/rooms/sync',(req,res) => {
 })
 
 
+app.get('/rooms/:id',(req,res)=>{
+    Rooms.findById(req.params.id)
+    .then(result=>{
+        res.status(200).json({
+            name: result.name,
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        })
+    })
+})
+
+
+
 app.post('/messages/new',(req,res) => {
     const dbMessage = req.body
 

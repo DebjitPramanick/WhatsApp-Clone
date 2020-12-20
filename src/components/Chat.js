@@ -6,13 +6,29 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
 import SendIcon from '@material-ui/icons/Send';
 
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import {useParams} from 'react-router-dom'
 import "../styles/Chat.css";
 import axios from '../Axios'
 
 const Chat = ({ messages }) => {
 
     const [input,setInput] = useState("");
+
+    const { roomId } = useParams();
+
+    const [roomname,setRoomname] = useState("");
+
+    useEffect(()=>{
+        
+        if(roomId){
+            axios.get(`/rooms/${roomId}`)
+            .then(res => {
+                setRoomname(res.data);
+            })
+        }
+    },[roomId])
+
     const sendMessage= async(e) => {
         e.preventDefault();
 
@@ -29,10 +45,10 @@ const Chat = ({ messages }) => {
     return (
         <div className="chat">
             <div className="chat-header">
-                <Avatar/>
+                <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbFngkPm5xR5UarZY4-au4OqdsLDNzEwMTzg&usqp=CAU"/>
 
                 <div className="chat-header-info">
-                    <h3>Room name</h3>
+                    <h3>{roomname.name}</h3>
                     <p>Last seen at </p>
                 </div>
 

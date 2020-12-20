@@ -1,9 +1,17 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import {Avatar} from "@material-ui/core"
 import "../styles/SidebarChat.css"
 import axios from '../Axios'
+import {Link} from 'react-router-dom'
 
-const SidebarChat = ({addNewchat,id,name}) => {
+const SidebarChat = ({addNewchat,roomId,name}) => {
+
+
+    const [seed,setSeed] = useState("");
+
+    useEffect(()=>{
+        setSeed(Math.floor(Math.random()*500))
+    },[])
 
 
     const createChat = async(e) => {
@@ -17,13 +25,15 @@ const SidebarChat = ({addNewchat,id,name}) => {
     }
 
     return !addNewchat ? (
-        <div className="sidebarChat">
-            <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbFngkPm5xR5UarZY4-au4OqdsLDNzEwMTzg&usqp=CAU"/>
-            <div className="sidebarChat-info">
-                <h2>{name}</h2>
-                <p>This is the last message</p>
+        <Link to={`/rooms/${roomId}`}>
+            <div className="sidebarChat">
+                <Avatar src={`https://avatars.dicebear.com/4.5/api/male/${seed}.svg`}/>
+                <div className="sidebarChat-info">
+                    <h2>{name}</h2>
+                    <p>This is the last message</p>
+                </div>
             </div>
-        </div>
+        </Link>
     ) : (
         <div onClick={createChat} className="sidebarChat add-btn">
             <p>Add new room</p>
