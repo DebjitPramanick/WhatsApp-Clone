@@ -9,11 +9,16 @@ import {SearchOutlined} from '@material-ui/icons';
 
 import SidebarChat from "./SidebarChat"
 
+import { useStateValue } from '../StateProvider';
+
 const Sidebar = ({ rooms }) => {
+
+    const [{user},dispatch] = useStateValue();
+
     return (
         <div className="sidebar">
             <div className="sidebar-header">
-                <Avatar src="https://avatars3.githubusercontent.com/u/73888326?s=460&u=c504a6ccdb0b157239ebd70efa8e6779f6a8d5ca&v=4" />
+                <Avatar src={user?.photoURL} />
                 <div className="siebar-header-right">
                     <IconButton>
                         <DonutLargeIcon/>

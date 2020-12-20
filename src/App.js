@@ -7,14 +7,19 @@ import Pusher from 'pusher-js'
 import axios from './Axios'
 
 import "./App.css";
+import Login from './components/Login';
+import { useStateValue } from './StateProvider';
 
 //Here we go--------------------------------------------
 
 
 const App = () => {
 
+    const [{user},dispatch] = useStateValue();
+
     const [messages,setMessages] = useState([]);
     const [rooms,setRooms] = useState([]);
+    //const [user,setUser] = useState(null);
 
     useEffect(() => {
         axios.get('/messages/sync')
@@ -66,21 +71,25 @@ const App = () => {
 
     return (
         <div className="app">
-            <div className="app-body">
+            {!user ? (
+                <Login/>
+            ): (
+                <div className="app-body">
 
-                <Router>
-                    <Sidebar rooms={rooms}/>
-                    <Switch>
-                        <Route path="/rooms/:roomId">
-                            <Chat messages={messages}/>
-                        </Route>
-                        <Route path="/">
-                            <h1>Welome</h1>
-                        </Route>
-                    </Switch>
-                </Router>
+                    <Router>
+                        <Sidebar rooms={rooms}/>
+                        <Switch>
+                            <Route path="/rooms/:roomId">
+                                <Chat messages={messages}/>
+                            </Route>
+                            <Route path="/">
+                                <h1>Welome</h1>
+                            </Route>
+                        </Switch>
+                    </Router>
                 
-            </div>
+                </div>
+            )}
             
         </div>
     )
