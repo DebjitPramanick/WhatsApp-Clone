@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import Messages from './DBmessages.js'
+import Rooms from './DBrooms.js'
 import Pusher from 'pusher'
 import cors from 'cors'
 
@@ -38,8 +39,10 @@ db.once('open',()=>{
     console.log("DB connected.")
 
     const messageCollection = db.collection("messages");
-    const changeStream = messageCollection.watch();
+    const roomCollection = db.collection("rooms");
 
+    const changeStream = messageCollection.watch();
+    const changeStream2 = roomCollection.watch();
 
     changeStream.on('change',(change)=>{
         console.log("Changed Message");
@@ -53,6 +56,23 @@ db.once('open',()=>{
                 message: messageDetails.message,
                 timeStamp: messageDetails.timeStamp,
                 received: messageDetails.received
+            });
+        }
+        else{
+            console.log("Error triggering Pusher");
+        }
+    })
+
+
+    changeStream2.on('change',(change)=>{
+        console.log("Changed room");
+
+        if(change.operationType === 'insert'){
+            const roomDetails = change.fullDocument;
+
+            pusher.trigger('rooms','inserted', // messages is my channel name
+            {
+                name: roomDetails.name,
             });
         }
         else{
@@ -78,6 +98,14 @@ app.get('/messages/sync',(req,res) => {
     })
 })
 
+app.get('/rooms/sync',(req,res) => {
+
+    Rooms.find((err,data) => {
+        if(err){ res.status(500).send(err) }
+        else{ res.status(200).send(data)}
+    })
+})
+
 
 app.post('/messages/new',(req,res) => {
     const dbMessage = req.body
@@ -88,6 +116,15 @@ app.post('/messages/new',(req,res) => {
     })
 })
 
+
+app.post('/rooms/new',(req,res) => {
+    const dbRoom = req.body
+
+    Rooms.create(dbRoom, (err,data) => {
+        if(err){ res.status(500).send(err) }
+        else{ res.status(201).send(`new room created: \n ${data}`)}
+    })
+})
 
 
 //Listen

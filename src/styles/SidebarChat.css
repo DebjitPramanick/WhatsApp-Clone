@@ -22,3 +22,16 @@
 .sidebarChat-info{
     margin-left: 15px;
 }
+
+
+.add-btn{
+    width: fit-content;
+    margin: 20px;
+    background-color: lightgreen;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 12px;
+}
+.add-btn:hover{
+    background-color: rgb(79, 167, 79);
+}

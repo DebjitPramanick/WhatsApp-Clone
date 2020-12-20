@@ -9,7 +9,7 @@ import {SearchOutlined} from '@material-ui/icons';
 
 import SidebarChat from "./SidebarChat"
 
-const Sidebar = () => {
+const Sidebar = ({ rooms }) => {
     return (
         <div className="sidebar">
             <div className="sidebar-header">
@@ -36,10 +36,10 @@ const Sidebar = () => {
 
 
             <div className="sidebar-chats">
-                <SidebarChat/>
-                <SidebarChat/>
-                <SidebarChat/>
-                <SidebarChat/>
+                <SidebarChat addNewchat/>
+                {rooms.map((room)=>{
+                    <SidebarChat key={room.id} name={room.name} id={room.name}/>
+                })}
             </div>
         </div>
     )
