@@ -15,6 +15,7 @@ import { useStateValue } from '../StateProvider'
 const Chat = ({ messages }) => {
 
     const [input,setInput] = useState("");
+    const [time,setTime] = useState("");
     const { roomId } = useParams();
     const [roomname,setRoomname] = useState("");
     const [{user},dipacth] = useStateValue();
@@ -29,20 +30,20 @@ const Chat = ({ messages }) => {
     },[roomId])
 
     const getTime = () =>{
-        let d = new Date();
-        let t = `${d.getHours()}:${d.getMinutes()}`;
-        return t;
+        
     }
 
     const sendMessage= async(e) => {
         e.preventDefault();
+        let d = new Date();
+        setTime(`${d.getHours()}:${d.getMinutes()}`);
 
         if(input){
             await axios.post("/messages/new",{
                 roomID: roomId,
                 message: input,
                 name: user.displayName,
-                timeStamp : getTime(),
+                timeStamp : time,
                 received: false
             });
         }
