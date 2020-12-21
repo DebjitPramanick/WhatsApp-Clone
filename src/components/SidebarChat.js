@@ -1,5 +1,6 @@
 import React ,{useState,useEffect} from 'react'
-import {Avatar} from "@material-ui/core"
+import {Avatar,IconButton} from "@material-ui/core"
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import "../styles/SidebarChat.css"
 import axios from '../Axios'
 import {Link} from 'react-router-dom'
@@ -36,7 +37,7 @@ const SidebarChat = ({addNewchat,roomId,name,image}) => {
         </Link>
     ) : (
         <div onClick={createRoom} className="sidebarChat add-btn">
-            <p>Add new room</p>
+            <AddCircleIcon/>
         </div>
     );
 }

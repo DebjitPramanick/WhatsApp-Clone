@@ -31,13 +31,15 @@ const Chat = ({ messages }) => {
     const sendMessage= async(e) => {
         e.preventDefault();
 
-        await axios.post("/messages/new",{
-            roomID: roomId,
-            message: input,
-            name: user.displayName,
-            timeStamp : "Just now",
-            received: false
-        });
+        if(input){
+            await axios.post("/messages/new",{
+                roomID: roomId,
+                message: input,
+                name: user.displayName,
+                timeStamp : "Just now",
+                received: false
+            });
+        }
 
         setInput("");
 

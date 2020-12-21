@@ -27,13 +27,19 @@
 .add-btn{
     width: fit-content;
     margin: 20px;
-    background-color: lightgreen;
     border-radius: 4px;
     cursor: pointer;
-    padding: 12px;
+    background-color: #0a8d48;
 }
+
+.add-btn > .MuiSvgIcon-root{
+    color: white;
+    font-size: 32px;
+    padding: 0 !important;
+}
+
 .add-btn:hover{
-    background-color: rgb(79, 167, 79);
+    background-color: #056e36;
 }
 
 a{

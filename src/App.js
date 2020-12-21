@@ -78,14 +78,9 @@ const App = () => {
                     <Router>
                         <Sidebar rooms={rooms}/>
                         <Switch>
-                            {rooms.map((room)=>{
-                                return(
-                                    <Route path={`rooms/${room._id}`}>
-                                        <Chat messages={messages}/>
-                                    </Route>
-                                )
-                            })}
-                            
+                            <Route path="/rooms/:roomId">
+                                <Chat messages={messages}/>
+                            </Route>
                             <Route path="/">
                                 <h1>Welome</h1>
                             </Route>
