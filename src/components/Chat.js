@@ -71,7 +71,7 @@ const Chat = ({ messages }) => {
                         <div>
                             {(message.roomID === roomId)?(
                                 <p className={`chat-message ${message.name === user.displayName && "chat-reciever"}`}>
-                                    <span className="chat-name">{message.name}</span>
+                                    <p className="chat-name">{message.name}</p>
                                     {message.message}
                                     <span className="chat-timestamp">
                                         {message.timeStamp}

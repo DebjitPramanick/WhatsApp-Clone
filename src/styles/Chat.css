@@ -37,9 +37,11 @@
 
 .chat-message{
     position: relative;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 500;
     padding: 10px;
     width: fit-content;
+    max-width: 400px;
     border-radius: 10px;
     background-color: #FFFFFF;
     margin-bottom: 30px;
@@ -48,12 +50,13 @@
 .chat-timestamp{
     margin-left: 10px;
     font-size: xx-small;
+    color: grey;
 }
 .chat-name{
-    position: absolute;
-    top: -20px;
-    font-weight: 800;
+    margin-bottom: 14px;
+    font-weight: 600;
     font-size: xx-small;
+    color: grey;
 }
 
 .chat-reciever{
@@ -71,14 +74,17 @@
 .chat-footer > form{
     flex: 1;
     display: flex;
+    
 }
 
  .chat-footer > form > input{
      flex: 1;
      border-radius: 30px;
-     padding: 10px;
+     padding: 10px 14px;
      border: 0;
      outline: 0;
+     font-size: 18px;
+     margin: 0 10px;
  }
 
  .chat-footer > .MuiSvgIcon-root{
@@ -89,8 +95,10 @@
  button{
      border: 0;
      outline: 0;
+     cursor: pointer;
  }
 
  button > .MuiSvgIcon-root{
      color: gray;
+     cursor: pointer;
  }

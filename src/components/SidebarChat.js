@@ -6,9 +6,6 @@ import {Link} from 'react-router-dom'
 
 const SidebarChat = ({addNewchat,roomId,name,image}) => {
 
-    console.log(roomId);
-
-
     const [seed,setSeed] = useState("");
 
     useEffect(()=>{
@@ -16,7 +13,7 @@ const SidebarChat = ({addNewchat,roomId,name,image}) => {
     },[])
 
 
-    const createChat = async(e) => {
+    const createRoom = async(e) => {
         e.preventDefault();
         const roomName = prompt("Please enter toom name : ");
         if(roomName){
@@ -38,7 +35,7 @@ const SidebarChat = ({addNewchat,roomId,name,image}) => {
             </div>
         </Link>
     ) : (
-        <div onClick={createChat} className="sidebarChat add-btn">
+        <div onClick={createRoom} className="sidebarChat add-btn">
             <p>Add new room</p>
         </div>
     );
