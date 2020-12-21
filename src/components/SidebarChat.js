@@ -1,5 +1,5 @@
 import React ,{useState,useEffect} from 'react'
-import {Avatar,IconButton} from "@material-ui/core"
+import {Avatar} from "@material-ui/core"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import "../styles/SidebarChat.css"
 import axios from '../Axios'

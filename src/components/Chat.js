@@ -28,6 +28,12 @@ const Chat = ({ messages }) => {
         
     },[roomId])
 
+    const getTime = () =>{
+        let d = new Date();
+        let t = `${d.getHours()}:${d.getMinutes()}`;
+        return t;
+    }
+
     const sendMessage= async(e) => {
         e.preventDefault();
 
@@ -36,7 +42,7 @@ const Chat = ({ messages }) => {
                 roomID: roomId,
                 message: input,
                 name: user.displayName,
-                timeStamp : "Just now",
+                timeStamp : getTime(),
                 received: false
             });
         }
@@ -72,13 +78,13 @@ const Chat = ({ messages }) => {
                     return(
                         <div>
                             {(message.roomID === roomId)?(
-                                <p className={`chat-message ${message.name === user.displayName && "chat-reciever"}`}>
+                                <h6 className={`chat-message ${message.name === user.displayName && "chat-reciever"}`}>
                                     <p className="chat-name">{message.name}</p>
                                     {message.message}
                                     <span className="chat-timestamp">
                                         {message.timeStamp}
                                     </span>
-                                </p>
+                                </h6>
                             ) : 
                                 <h1></h1>
                             }
