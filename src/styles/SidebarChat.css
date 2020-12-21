@@ -35,3 +35,8 @@
 .add-btn:hover{
     background-color: rgb(79, 167, 79);
 }
+
+a{
+    text-decoration: none;
+    color: black;
+}

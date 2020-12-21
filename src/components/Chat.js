@@ -10,31 +10,31 @@ import React,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import "../styles/Chat.css";
 import axios from '../Axios'
+import { useStateValue } from '../StateProvider'
 
 const Chat = ({ messages }) => {
 
     const [input,setInput] = useState("");
-
     const { roomId } = useParams();
-
     const [roomname,setRoomname] = useState("");
+    const [{user},dipacth] = useStateValue();
+
 
     useEffect(()=>{
+        axios.get("/rooms/"+roomId)
+        .then(res => {
+            setRoomname(res.data);
+        })
         
-        if(roomId){
-            axios.get(`/rooms/${roomId}`)
-            .then(res => {
-                setRoomname(res.data);
-            })
-        }
     },[roomId])
 
     const sendMessage= async(e) => {
         e.preventDefault();
 
         await axios.post("/messages/new",{
+            roomID: roomId,
             message: input,
-            name: "DEMO APP",
+            name: user.displayName,
             timeStamp : "Just now",
             received: false
         });
@@ -45,7 +45,7 @@ const Chat = ({ messages }) => {
     return (
         <div className="chat">
             <div className="chat-header">
-                <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbFngkPm5xR5UarZY4-au4OqdsLDNzEwMTzg&usqp=CAU"/>
+                <Avatar src={""}/>
 
                 <div className="chat-header-info">
                     <h3>{roomname.name}</h3>
@@ -68,13 +68,21 @@ const Chat = ({ messages }) => {
             <div className="chat-body">
                 {messages.map((message)=>{
                     return(
-                        <p className={`chat-message ${message.received && "chat-reciever"}`}>
-                            <span className="chat-name">{message.name}</span>
-                            {message.message}
-                            <span className="chat-timestamp">
-                                {message.timeStamp}
-                            </span>
-                        </p>
+                        <div>
+                            {(message.roomID === roomId)?(
+                                <p className={`chat-message ${message.name === user.displayName && "chat-reciever"}`}>
+                                    <span className="chat-name">{message.name}</span>
+                                    {message.message}
+                                    <span className="chat-timestamp">
+                                        {message.timeStamp}
+                                    </span>
+                                </p>
+                            ) : 
+                                <h1></h1>
+                            }
+
+                        </div>
+                        
                     )
 
                 })}

@@ -20,6 +20,7 @@ const SidebarChat = ({addNewchat,roomId,name}) => {
         if(roomName){
             await axios.post("/rooms/new",{
                 name: roomName,
+                image: `https://avatars.dicebear.com/4.5/api/male/${seed}.svg`
             });
         }
     }

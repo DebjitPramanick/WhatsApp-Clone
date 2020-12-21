@@ -52,6 +52,7 @@ db.once('open',()=>{
 
             pusher.trigger('messages','inserted', // messages is my channel name
             {
+                roomID: messageDetails.roomID,
                 name: messageDetails.name,
                 message: messageDetails.message,
                 timeStamp: messageDetails.timeStamp,
@@ -73,6 +74,7 @@ db.once('open',()=>{
             pusher.trigger('rooms','inserted', // messages is my channel name
             {
                 name: roomDetails.name,
+                image: roomDetails.image
             });
         }
         else{
@@ -112,6 +114,7 @@ app.get('/rooms/:id',(req,res)=>{
     .then(result=>{
         res.status(200).json({
             name: result.name,
+            image: result.image
         })
     })
     .catch(err=>{

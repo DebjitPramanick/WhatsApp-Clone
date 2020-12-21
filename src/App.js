@@ -19,7 +19,6 @@ const App = () => {
 
     const [messages,setMessages] = useState([]);
     const [rooms,setRooms] = useState([]);
-    //const [user,setUser] = useState(null);
 
     useEffect(() => {
         axios.get('/messages/sync')
