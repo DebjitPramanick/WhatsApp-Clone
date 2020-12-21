@@ -21,7 +21,7 @@ const Chat = ({ messages }) => {
 
 
     useEffect(()=>{
-        axios.get("/rooms/"+roomId)
+        axios.get(`/rooms/${roomId}`)
         .then(res => {
             setRoomname(res.data);
         })
@@ -45,7 +45,7 @@ const Chat = ({ messages }) => {
     return (
         <div className="chat">
             <div className="chat-header">
-                <Avatar src={""}/>
+                <Avatar src={roomname.image}/>
 
                 <div className="chat-header-info">
                     <h3>{roomname.name}</h3>
