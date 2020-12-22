@@ -18,6 +18,12 @@ const Sidebar = () => {
 
     const [rooms,setRooms] = useState([]);
     const [{user},dispatch] = useStateValue();
+    const [search,setSearch] = React.useState("");
+
+
+    const filterRooms = rooms.filter((room)=>{
+        return room.name.toLowerCase().includes(search.toLowerCase());
+    });
 
 
 
@@ -47,16 +53,38 @@ const Sidebar = () => {
     }, [])
 
 
+    const [seed,setSeed] = useState("");
+
+    useEffect(()=>{
+        setSeed(Math.floor(Math.random()*500))
+    },[])
+
+
+    const createRoom = async(e) => {
+        e.preventDefault();
+
+        const roomName = prompt("Please enter toom name : ");
+
+        
+        if(roomName){
+            await axios.post("/rooms/new",{
+                name: roomName,
+                image: `https://avatars.dicebear.com/4.5/api/male/${seed}.svg`
+            });
+        }
+    }
+
+
 
     return (
         <div className="sidebar">
             <div className="sidebar-header">
-                <Avatar src={user?.photoURL} />
+                <Avatar src={user?.photoURL} className="profilepic" />
                 <div className="siebar-header-right">
                     <IconButton>
                         <DonutLargeIcon/>
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={createRoom}>
                         <ChatIcon/>
                     </IconButton>
                     <IconButton>
@@ -68,14 +96,13 @@ const Sidebar = () => {
             <div className="sidebar-search">
                 <div className="sidebar-searchContainer">
                     <SearchOutlined/>
-                    <input placeholder="Search chat or start new" type="text"></input>
+                    <input placeholder="Search chat or start new" type="text" onChange={e => setSearch(e.target.value)}/>
                 </div>
             </div>
 
 
             <div className="sidebar-chats">
-                <SidebarChat addNewchat/>
-                {rooms.map((room)=>{
+                {filterRooms.map((room)=>{
                     return <SidebarChat key={room._id} name={room.name} id={room._id} image={room.image}/>
                 })}
             </div>

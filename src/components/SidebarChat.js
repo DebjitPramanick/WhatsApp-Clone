@@ -1,32 +1,13 @@
-import React ,{useState,useEffect} from 'react'
+import React  from 'react'
 import {Avatar} from "@material-ui/core"
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import "../styles/SidebarChat.css"
-import axios from '../Axios'
 import {Link} from 'react-router-dom'
 
-const SidebarChat = ({addNewchat,id,name,image}) => {
-
-    const [seed,setSeed] = useState("");
-
-    useEffect(()=>{
-        setSeed(Math.floor(Math.random()*500))
-    },[])
+const SidebarChat = ({id,name,image}) => {
 
 
-    const createRoom = async(e) => {
-        e.preventDefault();
+    return(
 
-        const roomName = prompt("Please enter toom name : ");
-        if(roomName){
-            await axios.post("/rooms/new",{
-                name: roomName,
-                image: `https://avatars.dicebear.com/4.5/api/male/${seed}.svg`
-            });
-        }
-    }
-
-    return !addNewchat ? (
         <Link to={`/rooms/${id}`}>
             <div className="sidebarChat">
                 <Avatar src={image}/>
@@ -36,10 +17,7 @@ const SidebarChat = ({addNewchat,id,name,image}) => {
                 </div>
             </div>
         </Link>
-    ) : (
-        <div onClick={createRoom} className="sidebarChat add-btn">
-            <AddCircleIcon/>
-        </div>
+        
     );
 }
 
