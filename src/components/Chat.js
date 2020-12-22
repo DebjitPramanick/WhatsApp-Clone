@@ -16,37 +16,36 @@ const Chat = ({ messages }) => {
 
     const [input,setInput] = useState("");
     const [time,setTime] = useState("");
-    const { roomId } = useParams();
+    const { ROOMID } = useParams();
     const [roomname,setRoomname] = useState("");
     const [{user},dipacth] = useStateValue();
 
 
     useEffect(()=>{
-        axios.get(`/rooms/${roomId}`)
+        axios.get(`/rooms/${ROOMID}`)
         .then(res => {
             setRoomname(res.data);
         })
         
-    },[roomId])
+    },[ROOMID])
 
-    const getTime = () =>{
-        
-    }
 
     const sendMessage= async(e) => {
         e.preventDefault();
+
         let d = new Date();
-        setTime(`${d.getHours()}:${d.getMinutes()}`);
 
         if(input){
+            setTime(`${d.getHours()}:${d.getMinutes()}`);
             await axios.post("/messages/new",{
-                roomID: roomId,
+                roomID: ROOMID,
                 message: input,
                 name: user.displayName,
                 timeStamp : time,
                 received: false
             });
         }
+        
 
         setInput("");
 
@@ -58,7 +57,7 @@ const Chat = ({ messages }) => {
 
                 <div className="chat-header-info">
                     <h3>{roomname.name}</h3>
-                    <p>Last seen at </p>
+                    <p>{new Date().toString()}</p>
                 </div>
 
                 <div className="chat-head-right">
@@ -78,13 +77,14 @@ const Chat = ({ messages }) => {
                 {messages.map((message)=>{
                     return(
                         <div>
-                            {(message.roomID === roomId)?(
+                            {(message.roomID === ROOMID)?(
                                 <h6 className={`chat-message ${message.name === user.displayName && "chat-reciever"}`}>
                                     <p className="chat-name">{message.name}</p>
                                     {message.message}
                                     <span className="chat-timestamp">
                                         {message.timeStamp}
                                     </span>
+                                    <p>{message._id}</p>
                                 </h6>
                             ) : 
                                 <h1></h1>

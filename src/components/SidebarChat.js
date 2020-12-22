@@ -5,17 +5,18 @@ import "../styles/SidebarChat.css"
 import axios from '../Axios'
 import {Link} from 'react-router-dom'
 
-const SidebarChat = ({addNewchat,roomId,name,image}) => {
+const SidebarChat = ({addNewchat,id,name,image}) => {
 
     const [seed,setSeed] = useState("");
 
     useEffect(()=>{
-        setSeed(Math.floor(Math.random()*500))
+        setSeed(Math.floor(Math.random()*500));
     },[])
 
 
     const createRoom = async(e) => {
         e.preventDefault();
+
         const roomName = prompt("Please enter toom name : ");
         if(roomName){
             await axios.post("/rooms/new",{
@@ -26,7 +27,7 @@ const SidebarChat = ({addNewchat,roomId,name,image}) => {
     }
 
     return !addNewchat ? (
-        <Link to={`/rooms/${roomId}`}>
+        <Link to={`/rooms/${id}`}>
             <div className="sidebarChat">
                 <Avatar src={image}/>
                 <div className="sidebarChat-info">

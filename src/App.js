@@ -18,19 +18,6 @@ const App = () => {
     const [{user},dispatch] = useStateValue();
 
     const [messages,setMessages] = useState([]);
-    const [rooms,setRooms] = useState([]);
-
-    useEffect(() => {
-        axios.get('/messages/sync')
-        .then(res => {
-            setMessages(res.data);
-        })
-
-        axios.get('/rooms/sync')
-        .then(res => {
-            setRooms(res.data);
-        })
-    }, [])
 
     useEffect(() => {
         const pusher = new Pusher('77bfb37eb1ed3c1f5728', {
@@ -39,8 +26,11 @@ const App = () => {
         const channel = pusher.subscribe('messages');
         
         channel.bind('inserted', (newMessage) => {
-            setMessages([...messages,newMessage])
+            setMessages([...messages,newMessage]);
+            
         });
+        
+        console.log(messages);
 
         return ()=>{
             channel.unbind_all();
@@ -50,7 +40,7 @@ const App = () => {
     }, [messages]);
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         const pusher2 = new Pusher('77bfb37eb1ed3c1f5728', {
             cluster: 'eu'
         });
@@ -65,7 +55,20 @@ const App = () => {
             channel2.unsubscribe();
         };
 
-    }, [rooms]);
+    }, [rooms]);*/
+
+
+    useEffect(() => {
+        axios.get('/messages/sync')
+        .then(res => {
+            setMessages(res.data);
+        })
+
+        /*axios.get('/rooms/sync')
+        .then(res => {
+            setRooms(res.data);
+        })*/
+    }, [])
 
 
     return (
@@ -76,9 +79,9 @@ const App = () => {
                 <div className="app-body">
 
                     <Router>
-                        <Sidebar rooms={rooms}/>
+                        <Sidebar/>
                         <Switch>
-                            <Route path="/rooms/:roomId">
+                            <Route path="/rooms/:ROOMID">
                                 <Chat messages={messages}/>
                             </Route>
                             <Route path="/">
