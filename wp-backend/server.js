@@ -72,7 +72,7 @@ db.once('open',()=>{
         if(change.operationType === 'insert'){
             const roomDetails = change.fullDocument;
 
-            pusher.trigger('rooms','inserted', // messages is my channel name
+            pusher.trigger('rooms','inserted',
             {
                 name: roomDetails.name,
                 image: roomDetails.image

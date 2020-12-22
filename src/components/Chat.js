@@ -80,7 +80,6 @@ const Chat = ({ messages }) => {
                                     <span className="chat-timestamp">
                                         {message.timeStamp}
                                     </span>
-                                    <p>{message._id}</p>
                                 </h6>
                             ) : 
                                 <h1></h1>

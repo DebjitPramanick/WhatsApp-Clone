@@ -13,6 +13,7 @@ import axios from '../Axios'
 import SidebarChat from "./SidebarChat"
 
 import { useStateValue } from '../StateProvider';
+import { Types } from 'mongoose';
 
 const Sidebar = () => {
 
@@ -36,21 +37,18 @@ const Sidebar = () => {
         channel2.bind('inserted', (newRoom) => {
             setRooms([...rooms,newRoom])
         });
+        
+        axios.get('/rooms/sync')
+        .then(res => {
+            setRooms(res.data);
+        })
 
         return ()=>{
             channel2.unbind_all();
             channel2.unsubscribe();
         };
-
     }, [rooms]);
 
-
-    useEffect(() => {
-        axios.get('/rooms/sync')
-        .then(res => {
-            setRooms(res.data);
-        })
-    }, [])
 
 
     const [seed,setSeed] = useState("");
