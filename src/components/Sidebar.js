@@ -44,7 +44,7 @@ const Sidebar = () => {
         .then(res => {
             setRooms(res.data);
         })
-    }, [rooms])
+    }, [])
 
 
 
