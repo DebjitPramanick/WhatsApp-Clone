@@ -56,7 +56,7 @@ const App = () => {
                 <div className="app-body">
 
                     <Router>
-                        <Sidebar/>
+                        <Sidebar messages={messages}/>
                         <Switch>
                             <Route path="/rooms/:ROOMID">
                                 <Chat messages={messages}/>

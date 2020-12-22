@@ -15,7 +15,7 @@ import SidebarChat from "./SidebarChat"
 import { useStateValue } from '../StateProvider';
 import { Types } from 'mongoose';
 
-const Sidebar = () => {
+const Sidebar = (messages) => {
 
     const [rooms,setRooms] = useState([]);
     const [{user},dispatch] = useStateValue();
@@ -101,7 +101,7 @@ const Sidebar = () => {
 
             <div className="sidebar-chats">
                 {filterRooms.map((room)=>{
-                    return <SidebarChat key={room._id} name={room.name} id={room._id} image={room.image}/>
+                    return <SidebarChat key={room._id} name={room.name} id={room._id} image={room.image} allMessages={messages}/>
                 })}
             </div>
         </div>
