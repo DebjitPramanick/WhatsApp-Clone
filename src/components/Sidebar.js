@@ -27,6 +27,13 @@ const Sidebar = (messages) => {
     });
 
 
+    useEffect(() => {
+        axios.get('/rooms/sync')
+        .then(res => {
+            setRooms(res.data);
+        })
+    }, [])
+
 
     useEffect(() => {
         const pusher2 = new Pusher('77bfb37eb1ed3c1f5728', {
@@ -37,11 +44,6 @@ const Sidebar = (messages) => {
         channel2.bind('inserted', (newRoom) => {
             setRooms([...rooms,newRoom])
         });
-        
-        axios.get('/rooms/sync')
-        .then(res => {
-            setRooms(res.data);
-        })
 
         return ()=>{
             channel2.unbind_all();

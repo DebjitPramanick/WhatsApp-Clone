@@ -12,6 +12,7 @@ const Welcome = () => {
                 <p>Created with MERN stack</p>
                 <p> By Debjit Pramanick</p>
                 <ul>
+                    <li>Google Sign-in</li>
                     <li>Create room</li>
                     <li>Search rooms</li>
                     <li>Chat with people</li>

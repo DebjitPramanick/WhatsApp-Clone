@@ -40,3 +40,13 @@
     border: 1px solid #0a8d48;
     border-radius: 4px;
 }
+
+
+@media(max-width: 580px){
+    .wc-container ul{
+        margin-top: 18px;
+    }
+    .wc-container ul li{
+        margin: 14px;
+    }
+}

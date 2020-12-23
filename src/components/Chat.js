@@ -26,13 +26,12 @@ const Chat = ({ messages }) => {
             setRoomname(res.data);
         })
         
-    },[ROOMID])
+    },[])
 
     const sendMessage= async(e) => {
         e.preventDefault();
 
         if(input){
-
             await axios.post("/messages/new",{
                 roomID: ROOMID,
                 message: input,

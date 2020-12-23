@@ -20,26 +20,6 @@ const App = () => {
 
     const [messages,setMessages] = useState([]);
 
-    useEffect(() => {
-        const pusher = new Pusher('77bfb37eb1ed3c1f5728', {
-            cluster: 'eu'
-        });
-        const channel = pusher.subscribe('messages');
-        
-        channel.bind('inserted', (newMessage) => {
-            setMessages([...messages,newMessage]);
-            
-        });
-        
-        console.log(messages);
-
-        return ()=>{
-            channel.unbind_all();
-            channel.unsubscribe();
-        };
-
-    }, [messages]);
-
 
     useEffect(() => {
         axios.get('/messages/sync')
@@ -48,6 +28,24 @@ const App = () => {
         })
     }, [])
 
+
+
+    useEffect(() => {
+        const pusher = new Pusher('77bfb37eb1ed3c1f5728', {
+            cluster: 'eu'
+        });
+        const channel = pusher.subscribe('messages');
+        
+        channel.bind('inserted', (newMessage) => {
+            setMessages([...messages,newMessage]);
+        });
+
+        return ()=>{
+            channel.unbind_all();
+            channel.unsubscribe();
+        };
+
+    },[messages]);
 
     return (
         <div className="app">
