@@ -59,3 +59,9 @@
     flex: 1;
     overflow: scroll;
 }
+
+@media(max-width: 800px){
+    .sidebar-header{
+        padding: 20px 10px 20px 20px;
+    }
+}

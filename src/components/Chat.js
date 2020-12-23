@@ -26,7 +26,7 @@ const Chat = ({ messages }) => {
             setRoomname(res.data);
         })
         
-    },[])
+    },[ROOMID])
 
     const sendMessage= async(e) => {
         e.preventDefault();
