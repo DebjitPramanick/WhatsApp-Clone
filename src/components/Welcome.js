@@ -1,16 +1,21 @@
 import { Button } from '@material-ui/core'
 import React from 'react'
-import "../styles/Login.css"
+import "../styles/Welcome.css"
 
 const Welcome = () => {
     return (
         <div className="welcome">
             <div className="wc-container">
-                <img src="https://cdn2.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-whatsapp-circle-512.png"
+                <img src="https://media-exp1.licdn.com/dms/image/C5603AQHvP34jkf8Mqw/profile-displayphoto-shrink_200_200/0/1601032304043?e=1614211200&v=beta&t=q13RFggXwpMDilABLHxDVs5IdZhM8ijWqNlZpl9wFug"
                 alt=""/>
-                <div className="login-text">
-                    Sign in to WhatsApp Clone
-                </div>
+                <h2>Welcome to WhatsApp Clone</h2>
+                <p>Created with MERN stack</p>
+                <p> By Debjit Pramanick</p>
+                <ul>
+                    <li>Create room</li>
+                    <li>Search rooms</li>
+                    <li>Chat with people</li>
+                </ul>
 
             </div>
         </div>

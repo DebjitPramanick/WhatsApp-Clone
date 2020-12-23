@@ -1,0 +1,42 @@
+.welcome{
+    background-color: #f8f8f8;
+    flex: 0.65;
+    display: grid;
+    place-items: center;
+}
+
+.wc-container{
+    text-align: center;
+}
+
+.wc-container img{
+    border-radius: 160px;
+    border: 4px solid #0a8d48;
+}
+
+.wc-container h2{
+    margin-top: 30px;
+    margin-bottom: 20PX;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.wc-container p{
+    margin-top: 8px;
+    font-size: 14px;
+    color: grey;
+}
+
+.wc-container ul{
+    list-style-type: none;
+}
+
+.wc-container ul li{
+    display: inline-block;
+    margin: 16px;
+    color: #0a8d48;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #0a8d48;
+    border-radius: 4px;
+}
