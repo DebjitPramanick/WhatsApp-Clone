@@ -9,6 +9,7 @@ import axios from './Axios'
 import "./App.css";
 import Login from './components/Login';
 import { useStateValue } from './StateProvider';
+import Welcome from './components/Welcome';
 
 //Here we go--------------------------------------------
 
@@ -62,7 +63,7 @@ const App = () => {
                                 <Chat messages={messages}/>
                             </Route>
                             <Route path="/">
-                                <h1>Welome</h1>
+                                <Welcome/>
                             </Route>
                         </Switch>
                     </Router>

@@ -9,7 +9,6 @@ const SidebarChat = ({id,name,image}) => {
     
 
     return(
-        <>
 
         <Link to={`/rooms/${id}`}>
             <div className="sidebarChat">
@@ -19,10 +18,6 @@ const SidebarChat = ({id,name,image}) => {
                 </div>
             </div>
         </Link>
-
-
-        </>
-
         
         
     );
