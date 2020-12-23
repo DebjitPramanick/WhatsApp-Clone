@@ -15,3 +15,9 @@
     width: 90vw;
     box-shadow: -1px 4px 20px -6px rgb(24, 24, 24);
 }
+
+@media(max-width: 580px){
+    .app-body, .app{
+        width: fit-content;
+    }
+}

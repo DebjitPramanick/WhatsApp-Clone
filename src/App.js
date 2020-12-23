@@ -47,6 +47,8 @@ const App = () => {
 
     },[messages]);
 
+    console.log(window.innerWidth);
+
     return (
         <div className="app">
             {!user ? (
