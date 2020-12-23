@@ -72,6 +72,8 @@ const Sidebar = (messages) => {
                 image: `https://avatars.dicebear.com/4.5/api/male/${seed}.svg`
             });
         }
+
+        window.location.reload(true);
     }
 
 
