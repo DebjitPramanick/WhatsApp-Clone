@@ -7,13 +7,13 @@ import cors from 'cors'
 
 const app = express()
 const port = process.env.PORT || 9000
-const connection_url = 'mongodb+srv://admin-debjit:NvvgjeMf9GRoRPNZ@cluster0.1hq8t.mongodb.net/whatsappDB?retryWrites=true&w=majority'
+const connection_url = 'mongodb+srv://admin-debjit:<DB Password>@cluster0.1hq8t.mongodb.net/<DB Name>?retryWrites=true&w=majority'
 
 const pusher = new Pusher({
   proxy: "HTTP_PROXY_URL",
-  appId: "1125325",
-  key: "77bfb37eb1ed3c1f5728",
-  secret: "6e72f01210d55afd8323",
+  appId: <Enter ID>,
+  key: <Enter key value>,
+  secret: <Enter secret value>,
   cluster: "eu",
   useTLS: true
 });
